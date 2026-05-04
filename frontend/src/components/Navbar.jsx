@@ -13,67 +13,65 @@ export default function Navbar() {
   };
 
   return (
-    <header className="sticky top-0 z-40 border-b border-white/70 bg-white/85 backdrop-blur">
-      <div className="page-shell flex flex-col gap-4 py-4 lg:flex-row lg:items-center lg:justify-between">
-        <div className="flex items-center justify-between gap-4">
-          <Link to="/" className="flex items-center gap-3">
-            <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-600 text-white shadow-lg shadow-brand-400/30">
-              <HiOutlineQueueList className="text-xl" />
-            </div>
-            <div>
-              <p className="text-sm font-semibold uppercase tracking-[0.22em] text-brand-700">
-                AntrianDealer
-              </p>
-              <p className="text-base font-semibold text-slate-900">Realtime Workshop</p>
-            </div>
-          </Link>
-
-          <div className="rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1 text-xs font-medium text-emerald-700">
-            Phase 1 Frontend
+    <header className="sticky top-0 z-40 border-b border-slate-100 bg-white/95 backdrop-blur shadow-sm">
+      <div className="page-shell flex items-center justify-between py-4">
+        <Link to="/" className="flex items-center gap-3">
+          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-brand-600 text-white shadow-lg shadow-brand-500/20">
+            <HiOutlineQueueList className="text-xl" />
           </div>
-        </div>
+          <div className="hidden sm:block">
+            <p className="text-xs font-black uppercase tracking-[0.25em] text-brand-600 leading-none">
+              HONDA
+            </p>
+            <p className="mt-1 text-sm font-bold text-slate-900 leading-none">Dealer Tasikmalaya</p>
+          </div>
+        </Link>
 
-        <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
-          {!currentUser && (
+        <nav className="flex items-center gap-2 sm:gap-6">
+          {!currentUser ? (
             <>
-              <NavLink to="/" className="secondary-button">
+              <NavLink 
+                to="/" 
+                className={({ isActive }) => 
+                  `text-sm font-semibold transition ${isActive ? 'text-brand-600' : 'text-slate-600 hover:text-brand-600'}`
+                }
+              >
                 Beranda
               </NavLink>
-              <NavLink to="/login" className="primary-button">
+              <div className="h-4 w-[1px] bg-slate-200" />
+              <Link to="/login" className="primary-button py-2.5 px-6">
                 Login
-              </NavLink>
+              </Link>
             </>
-          )}
-
-          {currentUser?.role === "user" && (
-            <>
-              <NavLink
-                to="/dashboard"
-                className={({ isActive }) =>
-                  isActive ? "primary-button" : "secondary-button"
-                }
-              >
-                Dashboard
-              </NavLink>
-              <NavLink
-                to="/profile"
-                className={({ isActive }) =>
-                  isActive ? "primary-button" : "secondary-button"
-                }
-              >
-                Profil
-              </NavLink>
-              <div className="flex items-center gap-2 rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-700">
+          ) : (
+            <div className="flex items-center gap-3 sm:gap-4">
+              {currentUser.role === "user" ? (
+                <>
+                  <NavLink to="/dashboard" className="text-sm font-semibold text-slate-600 hover:text-brand-600 transition">Dashboard</NavLink>
+                  <NavLink to="/profile" className="text-sm font-semibold text-slate-600 hover:text-brand-600 transition">Profil</NavLink>
+                </>
+              ) : (
+                <NavLink to="/admin" className="text-sm font-semibold text-slate-600 hover:text-brand-600 transition">Admin Panel</NavLink>
+              )}
+              
+              <div className="h-4 w-[1px] bg-slate-200" />
+              
+              <div className="hidden lg:flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-100 text-slate-700 text-xs font-bold">
                 <HiOutlineBolt className="text-brand-600" />
-                <span>{currentUser.name}</span>
+                {currentUser.name}
               </div>
-              <button type="button" onClick={handleLogout} className="secondary-button">
-                <HiArrowRightOnRectangle />
-                Logout
+
+              <button 
+                type="button" 
+                onClick={handleLogout} 
+                className="flex items-center gap-2 text-sm font-bold text-brand-600 hover:bg-brand-50 px-3 py-2 rounded-xl transition"
+              >
+                <HiArrowRightOnRectangle className="text-lg" />
+                <span className="hidden sm:inline">Logout</span>
               </button>
-            </>
+            </div>
           )}
-        </div>
+        </nav>
       </div>
     </header>
   );

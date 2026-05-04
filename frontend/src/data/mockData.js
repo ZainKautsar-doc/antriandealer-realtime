@@ -209,3 +209,98 @@ export const landingHighlights = [
       "Layer state, realtime, dan API client sudah dipisahkan agar fase berikutnya tinggal menyambungkan server.",
   },
 ];
+
+export const landingPromos = [
+  {
+    id: 1,
+    title: "Promo Ganti Oli",
+    subtitle: "Dapatkan diskon 20% untuk penggantian oli mesin dan gear setiap hari Jumat.",
+    image: "/images/workshop.png",
+    tag: "Terbatas",
+  },
+  {
+    id: 2,
+    title: "DP Ringan Vario 160",
+    subtitle: "Bawa pulang Honda Vario 160 dengan DP mulai dari 1 Jutaan saja.",
+    image: "/images/vario.png",
+    tag: "Hot Deal",
+  },
+  {
+    id: 3,
+    title: "Servis Lengkap Murah",
+    subtitle: "Paket servis lengkap + tune up hanya Rp 150.000 untuk semua tipe matic.",
+    image: "/images/beat.png",
+    tag: "Spesial",
+  },
+];
+
+export const motorCatalog = [
+  {
+    id: 1,
+    name: "Honda Vario 160",
+    category: "Matic",
+    price: "Rp 27.350.000",
+    image: "/images/vario.png",
+  },
+  {
+    id: 2,
+    name: "Honda Beat Deluxe",
+    category: "Matic",
+    price: "Rp 18.900.000",
+    image: "/images/beat.png",
+  },
+  {
+    id: 3,
+    name: "Honda ADV 160",
+    category: "Matic",
+    price: "Rp 36.200.000",
+    image: "/images/adv.png",
+  },
+];
+
+export const dealerServices = [
+  {
+    title: "Booking Service",
+    description: "Atur jadwal servis Anda tanpa harus mengantri lama di bengkel.",
+    icon: "HiOutlineCalendarDays",
+  },
+  {
+    title: "Part Shop",
+    description: "Sedia suku cadang asli Honda (HGP) untuk performa motor maksimal.",
+    icon: "HiOutlineWrenchScrewdriver",
+  },
+  {
+    title: "Home Service",
+    description: "Mekanik kami datang ke rumah Anda untuk perawatan berkala.",
+    icon: "HiOutlineHome",
+  },
+];
+
+export const dealerGallery = [
+  { id: 1, image: "/images/hero.png", title: "Showroom" },
+  { id: 2, image: "/images/workshop.png", title: "Workshop Area" },
+  { id: 3, image: "/images/hero.png", title: "Lounge" },
+  { id: 4, image: "/images/workshop.png", title: "Service Bay" },
+];
+
+export const dealerArticles = [
+  {
+    id: 1,
+    title: "Tips Merawat Motor Matic Agar Tetap Awet",
+    date: "24 Apr 2024",
+    excerpt: "Motor matic membutuhkan perawatan ekstra terutama pada bagian CVT...",
+  },
+  {
+    id: 2,
+    title: "Mengenal Fitur ISS pada Motor Honda",
+    date: "20 Apr 2024",
+    excerpt: "Idling Stop System (ISS) dirancang untuk menghemat bahan bakar saat berhenti...",
+  },
+  {
+    id: 3,
+    title: "Promo Lebaran Service Center Tasikmalaya",
+    date: "15 Apr 2024",
+    excerpt: "Nikmati diskon jasa servis hingga 50% selama periode mudik lebaran...",
+  },
+];
+
