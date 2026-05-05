@@ -24,7 +24,7 @@ export default function LandingPage() {
               <p className="text-sm font-semibold uppercase tracking-[0.3em] text-brand-400">
                 Welcome to {dealerProfile.name}
               </p>
-              <h1 className="mt-4 text-5xl font-bold leading-tight sm:text-6xl">
+              <h1 className="mt-4 text-4xl font-bold leading-tight sm:text-5xl lg:text-6xl">
                 Dealer Motor Honda Impian Anda Hadir di Tasikmalaya
               </h1>
               <p className="mt-6 text-lg text-slate-200">
@@ -130,7 +130,7 @@ export default function LandingPage() {
               <p className="section-heading text-brand-600">Katalog Unit</p>
               <h2 className="mt-4 text-3xl font-bold text-slate-900">Pilih Motor Favorit Anda</h2>
             </div>
-            <div className="flex gap-2">
+            <div className="flex flex-wrap gap-2">
               <button className="rounded-xl bg-brand-600 px-4 py-2 text-sm font-semibold text-white">Matic</button>
               <button className="rounded-xl bg-white px-4 py-2 text-sm font-semibold text-slate-600 hover:bg-slate-100">Sport</button>
               <button className="rounded-xl bg-white px-4 py-2 text-sm font-semibold text-slate-600 hover:bg-slate-100">Cub</button>
