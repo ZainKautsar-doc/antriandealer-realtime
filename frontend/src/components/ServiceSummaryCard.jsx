@@ -30,7 +30,7 @@ export default function ServiceSummaryCard({ user, queueEntry }) {
 
         <div className="rounded-2xl bg-white p-4">
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">
-            Keperluan Servis
+            Keperluan atau Keluhan
           </p>
           <p className="mt-2 text-base font-medium text-slate-900">{user.serviceType}</p>
         </div>

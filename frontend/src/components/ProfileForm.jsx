@@ -27,10 +27,14 @@ export default function ProfileForm({
     motorType: "",
     licensePlate: "",
     serviceType: "",
+    customService: "",
   });
   const [errors, setErrors] = useState(blankErrors);
 
   useEffect(() => {
+    const initialService = initialValues?.serviceType ?? "";
+    const isCustom = initialService && !serviceOptions.includes(initialService) && initialService !== "Lainnya";
+
     setValues({
       name: initialValues?.name ?? "",
       phone: initialValues?.phone ?? "",
@@ -38,7 +42,8 @@ export default function ProfileForm({
       age: initialValues?.age ?? "",
       motorType: initialValues?.motorType ?? "",
       licensePlate: initialValues?.licensePlate ?? "",
-      serviceType: initialValues?.serviceType ?? "",
+      serviceType: isCustom ? "Lainnya" : initialService,
+      customService: isCustom ? initialService : "",
     });
   }, [initialValues]);
 
@@ -54,7 +59,9 @@ export default function ProfileForm({
       nextErrors.licensePlate = "Plat nomor wajib diisi.";
     }
     if (!values.serviceType.trim()) {
-      nextErrors.serviceType = "Keperluan servis wajib dipilih.";
+      nextErrors.serviceType = "Keperluan atau keluhan wajib dipilih.";
+    } else if (values.serviceType === "Lainnya" && !values.customService.trim()) {
+      nextErrors.serviceType = "Harap masukkan detail keperluan atau keluhan Anda.";
     }
 
     setErrors(nextErrors);
@@ -78,7 +85,13 @@ export default function ProfileForm({
       ...values,
       age: Number(values.age),
       licensePlate: normalizePlate(values.licensePlate),
+      serviceType: values.serviceType === "Lainnya" && values.customService.trim() 
+                   ? values.customService.trim() 
+                   : values.serviceType,
     };
+    
+    // Remove customService from the final payload to avoid cluttering the data model
+    delete normalizedValues.customService;
 
     if (mode === "queue") {
       onSaveAndQueue(normalizedValues);
@@ -192,19 +205,19 @@ export default function ProfileForm({
         </label>
 
         <fieldset className="text-sm font-medium text-slate-700 md:col-span-2">
-          <legend>Keperluan Servis</legend>
+          <legend>Keperluan atau Keluhan</legend>
           <div className="mt-3 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {serviceOptions.map((service) => (
               <label
                 key={service}
-                className={`rounded-2xl border px-4 py-3 transition ${
+                className={`rounded-2xl border px-4 py-3 transition cursor-pointer flex items-center gap-2 ${
                   values.serviceType === service
                     ? "border-brand-300 bg-brand-50 text-brand-800"
                     : "border-slate-200 bg-white text-slate-700 hover:border-brand-200"
                 }`}
               >
                 <input
-                  className="sr-only"
+                  className="h-4 w-4 text-brand-600 focus:ring-brand-500 border-gray-300"
                   name="serviceType"
                   type="radio"
                   value={service}
@@ -215,6 +228,21 @@ export default function ProfileForm({
               </label>
             ))}
           </div>
+          
+          {values.serviceType === "Lainnya" && (
+            <div className="mt-3 animate-in fade-in slide-in-from-top-2 duration-300">
+              <input
+                className="field-shell"
+                type="text"
+                name="customService"
+                value={values.customService}
+                onChange={handleChange}
+                placeholder="Tuliskan keperluan atau keluhan Anda secara spesifik..."
+                autoFocus
+              />
+            </div>
+          )}
+
           {errors.serviceType ? (
             <span className="mt-2 block text-rose-600">{errors.serviceType}</span>
           ) : null}
