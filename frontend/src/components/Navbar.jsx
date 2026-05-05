@@ -27,35 +27,56 @@ export default function Navbar() {
           </div>
         </Link>
 
-        <nav className="flex items-center gap-2 sm:gap-6">
-          {!currentUser ? (
+        <nav className="flex items-center gap-2 sm:gap-4 md:gap-6">
+          <NavLink 
+            to="/" 
+            className={({ isActive }) => 
+              `text-sm font-semibold transition ${isActive ? 'text-brand-600' : 'text-slate-600 hover:text-brand-600'}`
+            }
+          >
+            Beranda
+          </NavLink>
+          
+          {currentUser?.role === "user" && (
             <>
               <NavLink 
-                to="/" 
+                to="/dashboard" 
                 className={({ isActive }) => 
                   `text-sm font-semibold transition ${isActive ? 'text-brand-600' : 'text-slate-600 hover:text-brand-600'}`
                 }
               >
-                Beranda
+                Ruang Antrian
               </NavLink>
-              <div className="h-4 w-[1px] bg-slate-200" />
-              <Link to="/login" className="primary-button py-2.5 px-6">
-                Login
-              </Link>
+              <NavLink 
+                to="/profile" 
+                className={({ isActive }) => 
+                  `text-sm font-semibold transition ${isActive ? 'text-brand-600' : 'text-slate-600 hover:text-brand-600'}`
+                }
+              >
+                Profil
+              </NavLink>
             </>
+          )}
+
+          {currentUser?.role === "admin" && (
+            <NavLink 
+              to="/admin" 
+              className={({ isActive }) => 
+                `text-sm font-semibold transition ${isActive ? 'text-brand-600' : 'text-slate-600 hover:text-brand-600'}`
+              }
+            >
+              Admin Panel
+            </NavLink>
+          )}
+
+          <div className="h-4 w-[1px] bg-slate-200" />
+
+          {!currentUser ? (
+            <Link to="/login" className="primary-button py-2.5 px-6">
+              Login
+            </Link>
           ) : (
             <div className="flex items-center gap-3 sm:gap-4">
-              {currentUser.role === "user" ? (
-                <>
-                  <NavLink to="/dashboard" className="text-sm font-semibold text-slate-600 hover:text-brand-600 transition">Dashboard</NavLink>
-                  <NavLink to="/profile" className="text-sm font-semibold text-slate-600 hover:text-brand-600 transition">Profil</NavLink>
-                </>
-              ) : (
-                <NavLink to="/admin" className="text-sm font-semibold text-slate-600 hover:text-brand-600 transition">Admin Panel</NavLink>
-              )}
-              
-              <div className="h-4 w-[1px] bg-slate-200" />
-              
               <div className="hidden lg:flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-100 text-slate-700 text-xs font-bold">
                 <HiOutlineBolt className="text-brand-600" />
                 {currentUser.name}

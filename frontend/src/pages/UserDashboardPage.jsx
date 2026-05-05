@@ -42,7 +42,7 @@ export default function UserDashboardPage() {
   return (
     <div className="space-y-6">
       <section className="glass-panel bg-hero-grid p-6 sm:p-8">
-        <p className="section-heading">Dashboard User</p>
+        <p className="section-heading">Ruang Antrian</p>
         <div className="mt-4 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
           <div>
             <h1 className="text-3xl font-semibold text-slate-950">
